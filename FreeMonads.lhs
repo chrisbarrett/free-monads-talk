@@ -1,21 +1,35 @@
-* Free Monads Talk
+[//]: -*- mode: markdown; -*-
+
+Free Monads Talk
+===
+
+Abstract
+---
 
 This is a literate Haskell file demonstrating free monads. You can load it in
 GHCi, just like a normal Haskell source file.
 
+Setup
+---
+
 To get started, clone this repo and run GHCi.
 
-    $ git clone https://github.com/chrisbarrett/free-monads-talk.git
-    $ cd free-monads-talk
-    $ stack ghci
+```sh
+$ git clone https://github.com/chrisbarrett/free-monads-talk.git
+$ cd free-monads-talk
+$ stack ghci
+```
 
 Once inside GHCi, you can load the Haskell source file and run the example code.
 
-    λ> :l FreeMonads
-    λ> example1
-    λ> example2
+```
+λ> :l FreeMonads
+λ> example1
+λ> example2
+```
 
-* Feature Presentation
+Free Monads
+===
 
 This module demonstrates a domain specific language (DSL) implemented using the
 Free Monad. We will write a small language for performing operations on the
@@ -27,9 +41,9 @@ operations will only build up a data structure _representing_ the program we
 want to run--nothing will be executed. We can then take that data structure and
 pass it off to different interpreters, which could do anything:
 
-  - Execute the actual operations on disk
-  - Collect the commands called but not do any IO (great for testing)
-  - Compile our program to C
+- Execute the actual operations on disk
+- Collect the commands called but not do any IO (great for testing)
+- Compile our program to C
 
 Pretty versatile stuff.
 
@@ -58,7 +72,8 @@ imports and pragmas out of the way.
 > import           System.FilePath        ((</>))
 
 
-* Language Definition
+Language Definition
+---
 
 First, we define the operations we will support in our language.
 
@@ -115,7 +130,8 @@ This program will either create or delete a directory in your temp files,
 depending on whether it already exists.
 
 
-* Interpreters
+Interpreters
+---
 
 Now that we can write programs in our language, we define interpreters to
 execute them.
@@ -171,7 +187,8 @@ Here's an interpreter that wraps around another to add logging:
 >     tshow = Text.pack . show
 
 
-* Execution
+Execution
+---
 
 Now that we have some interpreters, we can run our program!
 

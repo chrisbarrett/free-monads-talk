@@ -1,7 +1,8 @@
 Free Monads Talk
 ================
 
-See [FreeMonads.lhs](FreeMonads.lhs) for the presentation materials.
+See [FreeMonads.lhs](FreeMonads.lhs) for the presentation materials. There's
+also an HTML version [here](FreeMonads.html), which is easier to read online.
 
 Abstract
 ---

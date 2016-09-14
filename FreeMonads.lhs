@@ -201,7 +201,7 @@ The action below will execute the operations on disk.
 >     putStrLn ("after: " <> show after <> " entries")
 >
 > runIO :: MonadIO m => FileSystemF a -> m a
-> runIO p = Free.iterM (Monad.join . execFS) p
+> runIO p = Free.foldFree execFS p
 
 The action below will do the same as above, but also use the logging interpreter
 to output logs as commands are run.
@@ -212,8 +212,4 @@ to output logs as commands are run.
 >     putStrLn ("after: " <> show after <> " entries")
 >
 > runLoggedIO :: MonadIO m => FileSystemF a -> m a
-> runLoggedIO = runStdoutLoggingT . Free.iterM
->                  ( Monad.join
->                  . Monad.join
->                  . execFSLogged execFS
->                  )
+> runLoggedIO = runStdoutLoggingT . Free.foldFree (Monad.join . execFSLogged execFS)

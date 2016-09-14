@@ -8,7 +8,7 @@ _free monads_ We will write a small language for performing operations on the
 filesystem.
 
 Using a free monad allows you to treat any type (which has a certain structure)
-into a monad. _Free_ in this sense means "comes for free"--it's a trivial way to
+as a monad. _Free_ in this sense means "comes for free"--it's a trivial way to
 make your type satisfy all the monad laws and thus be an instance of a monad,
 but without actually doing anything interesting. The monadic bind on a free
 monad simply builds up a nested structure.

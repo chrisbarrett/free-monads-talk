@@ -1,33 +1,5 @@
 [//]: -*- mode: markdown; -*-
 
-Free Monads Talk
-===
-
-Abstract
----
-
-This is a literate Haskell file demonstrating free monads. You can load it in
-GHCi, just like a normal Haskell source file.
-
-Setup
----
-
-To get started, clone this repo and run GHCi.
-
-```sh
-$ git clone https://github.com/chrisbarrett/free-monads-talk.git
-$ cd free-monads-talk
-$ stack ghci
-```
-
-Once inside GHCi, you can load the Haskell source file and run the example code.
-
-```
-λ> :l FreeMonads
-λ> example1
-λ> example2
-```
-
 Free Monads
 ===
 

@@ -206,6 +206,7 @@ The action below will execute the operations on disk.
 The action below will do the same as above, but also use the logging interpreter
 to output logs as commands are run.
 
+> example2 :: IO ()
 > example2 = do
 >     (before, after) <- runLoggedIO program
 >     putStrLn ("before: " <> show before <> " entries")

@@ -3,11 +3,17 @@
 Free Monads
 ===
 
-This module demonstrates a domain specific language (DSL) implemented using the
-Free Monad. We will write a small language for performing operations on the
+This module demonstrates a domain specific language (DSL) implemented using
+_free monads_ We will write a small language for performing operations on the
 filesystem.
 
-By embedding our language in the free monad we are able to use those convenient
+Using a free monad allows you to treat any type (which has a certain structure)
+into a monad. _Free_ in this sense means "comes for free"--it's a trivial way to
+make your type satisfy all the monad laws and thus be an instance of a monad,
+but without actually doing anything interesting. The monadic bind on a free
+monad simply builds up a nested structure.
+
+By embedding our language in a free monad we are able to use those convenient
 monadic operations to build our programs. But critically, these monadic
 operations will only build up a data structure _representing_ the program we
 want to run--nothing will be executed. We can then take that data structure and
@@ -15,14 +21,14 @@ pass it off to different interpreters, which could do anything:
 
 - Execute the actual operations on disk
 - Collect the commands called but not do any IO (great for testing)
-- Compile our program to C
+- Compile our program to C.
 
 Pretty versatile stuff.
 
 Free monads are great if you know ahead of time that you might want to interpret
 a program in many different ways. However, you must write some boilerplate
 functions and understand the indirection introduced by having separate
-interpreters. There is a tradeoff to be made here.
+interpreters. There is a trade-off to be made here.
 
 This is a literate Haskell file, which you can run in GHC. Let's get those pesky
 imports and pragmas out of the way.
@@ -64,9 +70,9 @@ cleaner.
 
 > type FileSystemF a = Free FileSystem a
 
-Now we define some helper functions to lift our type into the free monad. These
-are the functions we will call to write programs in our language. They're
-basically boilerplate.
+Now we define some helper functions to embed our type in a free monad. These are
+the functions we will call to write programs in our language. They're basically
+boilerplate.
 
 > listFiles :: FilePath -> FileSystemF [FilePath]
 > listFiles f = Free.liftF (ListFiles f id)
@@ -84,8 +90,9 @@ basically boilerplate.
 > deleteDirectory f = Free.liftF (DeleteDirectory f id)
 
 Now that our operations are embedded in Free, we have a monad instance to play
-with and we have everything we need to stitch together a program in our
-language.
+with. We can use monadic bind (`>>=`), do-notation, and all the operations
+available on functors, applicatives and monads. We have everything we need to
+stitch together a little program in our language.
 
 > program = do
 >     tmpDir <- temporaryDirectory
@@ -106,7 +113,7 @@ Interpreters
 ---
 
 Now that we can write programs in our language, we define interpreters to
-execute them.
+actually execute them.
 
 Here's an interpreter that executes operations on disk:
 
@@ -186,3 +193,10 @@ to output logs as commands are run.
 >
 > runLoggedIO :: MonadIO m => FileSystemF a -> m a
 > runLoggedIO = runStdoutLoggingT . Free.foldFree (Monad.join . execFSLogged execFS)
+
+Summary
+---
+
+You've seen how to define a data type to represent a DSL, then wrap it in the
+free monad to make working with it more convenient. Then, you saw how to run
+programs written in your DSL.

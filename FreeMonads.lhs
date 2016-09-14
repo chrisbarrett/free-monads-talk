@@ -1,4 +1,21 @@
-* Free Monads
+* Free Monads Talk
+
+This is a literate Haskell file demonstrating free monads. You can load it in
+GHCi, just like a normal Haskell source file.
+
+To get started, clone this repo and run GHCi.
+
+    $ git clone https://github.com/chrisbarrett/free-monads-talk.git
+    $ cd free-monads-talk
+    $ stack ghci
+
+Once inside GHCi, you can load the Haskell source file and run the example code.
+
+    λ> :l FreeMonads
+    λ> example1
+    λ> example2
+
+* Feature Presentation
 
 This module demonstrates a domain specific language (DSL) implemented using the
 Free Monad. We will write a small language for performing operations on the

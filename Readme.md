@@ -2,7 +2,7 @@ Free Monads Talk
 ================
 
 See [FreeMonads.lhs](FreeMonads.lhs) for the presentation materials. There's
-also an HTML version [here](FreeMonads.html), which is easier to read online.
+also an HTML version [here][html-version], which is easier to read online.
 
 Abstract
 ---
@@ -38,6 +38,7 @@ Reading Material
 - The [free][] package (Hackage)
 - Free monads in Scala with the [cats][cats-free] library.
 
+[html-version]: http://htmlpreview.github.com/?https://github.com/chrisbarrett/free-monads-talk/blob/master/FreeMonads.html
 [free]: https://hackage.haskell.org/package/free
 [Gonzalez]: http://www.haskellforall.com/2012/06/you-could-have-invented-free-monads.html
 [DeGoes]: http://degoes.net/articles/modern-fp
